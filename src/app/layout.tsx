@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Gabriel Honorato | Senior Full-Stack Engineer",
+  title: "Gabriel Honorato — Product Engineering & Architecture",
   description:
-    "Senior Full-Stack Engineer specializing in AI SaaS, Analytics Platforms, Fintech Dashboards, and SaaS Infrastructure. 8+ years building scalable web applications.",
+    "Senior Full-Stack Engineer building AI SaaS platforms, analytics infrastructure, fintech systems, and automation engines at scale. Product-minded engineering leadership.",
   keywords: [
     "Senior Full-Stack Engineer",
     "AI SaaS",
@@ -27,15 +25,17 @@ export const metadata: Metadata = {
     "Python",
     "FastAPI",
     "AWS",
-    "Portfolio",
+    "System Architecture",
+    "Product Engineering",
   ],
   authors: [{ name: "Gabriel Honorato" }],
   openGraph: {
-    title: "Gabriel Honorato | Senior Full-Stack Engineer",
+    title: "Gabriel Honorato — Product Engineering & Architecture",
     description:
-      "Senior Full-Stack Engineer specializing in AI SaaS, Analytics Platforms, Fintech Dashboards, and SaaS Infrastructure.",
+      "Senior Full-Stack Engineer building AI SaaS platforms, analytics infrastructure, fintech systems, and automation engines at scale.",
     type: "website",
     locale: "en_US",
+    siteName: "Gabriel Honorato",
   },
 };
 
@@ -49,10 +49,8 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
-      <body className="min-h-screen flex flex-col bg-slate-950">
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+      <body className="min-h-screen flex flex-col bg-slate-950 text-slate-300">
+        {children}
       </body>
     </html>
   );
