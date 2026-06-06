@@ -1,6 +1,7 @@
 import { projects } from "@/lib/data";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { Metadata } from "next";
 
 interface Props {
@@ -22,6 +23,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: `${project.title} — Gabriel Honorato`,
       description: project.summary,
+      images: project.screenshot
+        ? [
+            {
+              url: project.screenshot,
+              width: 1600,
+              height: 1000,
+              alt: `${project.title} dashboard screenshot`,
+            },
+          ]
+        : undefined,
     },
   };
 }
@@ -101,22 +112,35 @@ export default async function ProjectPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Screenshot Placeholder */}
+      {/* Product screenshot */}
       <section className="py-8 sm:py-12">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 aspect-[16/9]">
-            <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-15`} />
-            <div className="absolute inset-0" style={{
-              backgroundImage: "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
-              backgroundSize: "24px 24px",
-            }} />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center">
-                <div className="text-4xl sm:text-5xl mb-4 opacity-30">🖼️</div>
-                <p className="text-xs sm:text-sm text-slate-600">Product screenshot placeholder</p>
+          <div className="relative rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 aspect-[16/10] shadow-2xl shadow-black/40">
+            {project.screenshot ? (
+              <>
+                <Image
+                  src={project.screenshot}
+                  alt={`${project.title} dashboard screenshot`}
+                  width={1600}
+                  height={1000}
+                  priority
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 ring-1 ring-inset ring-white/10" />
+              </>
+            ) : (
+              <>
+                <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-15`} />
+                <div className="absolute inset-0" style={{
+                  backgroundImage: "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
+                  backgroundSize: "24px 24px",
+                }} />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <p className="text-xs sm:text-sm text-slate-600">Product screenshot placeholder</p>
+                </div>
+              </>
+            )}
               </div>
-            </div>
-          </div>
         </div>
       </section>
 

@@ -3,11 +3,11 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { projects, liveSites, moreLiveSites, featuredRepos, socialLinks } from "@/lib/data";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function FeaturedProjects() {
   const [showMore, setShowMore] = useState(false);
-  const featuredProjects = projects.filter((p) => p.featured);
 
   return (
     <section id="work" className="relative py-24 sm:py-32 bg-slate-950">
@@ -22,10 +22,10 @@ export default function FeaturedProjects() {
           className="text-center mb-16"
         >
           <p className="text-blue-400 text-sm font-medium tracking-wider uppercase mb-4">
-            Featured Projects I've Built
+            Featured Projects I&apos;ve Built
           </p>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
-            Products I've Built
+            Products I&apos;ve Built
           </h2>
           <p className="mt-4 text-slate-400 max-w-2xl mx-auto">
             End-to-end platform engineering — from architecture and infrastructure to UI and deployment.
@@ -55,28 +55,30 @@ export default function FeaturedProjects() {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="group block"
               >
-                <div className="rounded-xl overflow-hidden bg-slate-900 border border-slate-800 hover:border-blue-500/30 transition-all duration-300">
-                  <div className="relative aspect-[16/10] overflow-hidden">
-                    <div className={`absolute inset-0 bg-gradient-to-br ${site.gradient} opacity-20`} />
-                    <div className="absolute inset-0" style={{
-                      backgroundImage: "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
-                      backgroundSize: "20px 20px",
-                    }} />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-4xl opacity-30 group-hover:scale-110 transition-transform duration-300">
-                        {index === 0 ? "🔗" : index === 1 ? "📅" : "📊"}
-                      </span>
-                    </div>
-                    <div className="absolute bottom-3 left-3 right-3">
-                      <div className="flex flex-wrap gap-1.5">
-                        {site.tags.map((tag) => (
-                          <span key={tag} className="px-2 py-0.5 text-[9px] font-medium rounded-full bg-black/60 text-slate-300 border border-white/10 backdrop-blur-sm">
-                            {tag}
-                          </span>
-                        ))}
+                  <div className="rounded-xl overflow-hidden bg-slate-900 border border-slate-800 hover:border-blue-500/30 transition-all duration-300">
+                    <div className="relative aspect-[16/10] overflow-hidden">
+                      {site.screenshot ? (
+                        <Image
+                          src={site.screenshot}
+                          alt={`${site.name} inspired dashboard mockup`}
+                          width={1600}
+                          height={1000}
+                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      ) : (
+                        <div className={`absolute inset-0 bg-gradient-to-br ${site.gradient} opacity-20`} />
+                      )}
+                      <div className={`absolute inset-0 bg-gradient-to-t ${site.gradient} opacity-10`} />
+                      <div className="absolute bottom-3 left-3 right-3">
+                        <div className="flex flex-wrap gap-1.5">
+                          {site.tags.map((tag) => (
+                            <span key={tag} className="px-2 py-0.5 text-[9px] font-medium rounded-full bg-black/60 text-slate-300 border border-white/10 backdrop-blur-sm">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
                   <div className="p-4">
                     <h4 className="text-sm font-semibold text-white group-hover:text-blue-400 transition-colors">
                       {site.name}
@@ -171,7 +173,7 @@ export default function FeaturedProjects() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {featuredRepos.map((repo, index) => {
               // match repo to project by checking if the slug starts with the repo name
-              const project = featuredProjects.find((p) => p.slug.startsWith(repo.name.split("-")[0]));
+              const project = projects.find((p) => p.slug.startsWith(repo.name.split("-")[0]));
               return (
                 <motion.div
                   key={repo.name}
@@ -182,36 +184,44 @@ export default function FeaturedProjects() {
                   className="group"
                 >
                   <Link href={project ? `/projects/${project.slug}` : repo.url} className="block h-full">
-                    <div className="h-full p-5 rounded-xl bg-slate-900/40 border border-slate-800/50 hover:border-blue-500/30 transition-all duration-300 flex flex-col">
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${repo.gradient} flex items-center justify-center text-white text-sm font-bold shrink-0`}>
-                          {repo.name.charAt(0).toUpperCase()}
+                    <div className="h-full overflow-hidden rounded-xl bg-slate-900/40 border border-slate-800/50 hover:border-blue-500/30 transition-all duration-300 flex flex-col">
+                      {project?.screenshot && (
+                        <div className="relative aspect-[16/10] overflow-hidden border-b border-slate-800/50 bg-slate-950">
+                          <Image
+                            src={project.screenshot}
+                            alt={`${repo.name} dashboard mockup`}
+                            width={1600}
+                            height={1000}
+                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          />
+                          <div className={`absolute inset-0 bg-gradient-to-t ${repo.gradient} opacity-10`} />
                         </div>
-                        <div className="min-w-0">
-                          <h4 className="text-sm font-semibold text-white group-hover:text-blue-400 transition-colors truncate">
-                            {repo.name}
-                          </h4>
-                          <span className="text-[10px] text-slate-600 font-mono">
-                            {repo.lang}
+                      )}
+                      <div className="p-5 flex flex-col flex-grow">
+                        <div className="flex items-center gap-3 mb-3">
+                          <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${repo.gradient} flex items-center justify-center text-white text-sm font-bold shrink-0`}>
+                            {repo.name.charAt(0).toUpperCase()}
+                          </div>
+                          <div className="min-w-0">
+                            <h4 className="text-sm font-semibold text-white group-hover:text-blue-400 transition-colors truncate">
+                              {repo.name}
+                            </h4>
+                            <span className="text-[10px] text-slate-600 font-mono">
+                              {repo.lang}
+                            </span>
+                          </div>
+                        </div>
+                        <p className="text-xs text-slate-500 leading-relaxed flex-grow">
+                          {repo.description}
+                        </p>
+                        <div className="mt-3 pt-3 border-t border-slate-800/50 flex items-center justify-between">
+                          <span className="text-xs text-blue-400 group-hover:text-blue-300 transition-colors inline-flex items-center gap-1">
+                            {project ? "Case study →" : "View repo →"}
+                          </span>
+                          <span className="text-xs text-slate-600 group-hover:text-white transition-colors">
+                            GitHub ↗
                           </span>
                         </div>
-                      </div>
-                      <p className="text-xs text-slate-500 leading-relaxed flex-grow">
-                        {repo.description}
-                      </p>
-                      <div className="mt-3 pt-3 border-t border-slate-800/50 flex items-center justify-between">
-                        <span className="text-xs text-blue-400 group-hover:text-blue-300 transition-colors inline-flex items-center gap-1">
-                          {project ? "Case study →" : "View repo →"}
-                        </span>
-                        <a
-                          href={repo.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className="text-xs text-slate-600 hover:text-white transition-colors"
-                        >
-                          GitHub ↗
-                        </a>
                       </div>
                     </div>
                   </Link>

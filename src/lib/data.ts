@@ -26,6 +26,7 @@ export interface Project {
   githubUrl: string;
   demoUrl: string;
   gradient: string;
+  screenshot?: string;
   featured?: boolean;
 }
 
@@ -43,6 +44,7 @@ export interface LiveSite {
   url: string;
   gradient: string;
   tags: string[];
+  screenshot?: string;
 }
 
 export const socialLinks = {
@@ -59,6 +61,7 @@ export const liveSites: LiveSite[] = [
     url: "https://dub.co",
     gradient: "from-blue-500 to-indigo-600",
     tags: ["Next.js", "TypeScript", "Link Management"],
+    screenshot: "/projects/dub-inspired-dashboard.png",
   },
   {
     name: "cal.com",
@@ -66,6 +69,7 @@ export const liveSites: LiveSite[] = [
     url: "https://cal.com",
     gradient: "from-violet-500 to-purple-600",
     tags: ["React", "TypeScript", "Scheduling"],
+    screenshot: "/projects/cal-inspired-dashboard.png",
   },
   {
     name: "highlight.io",
@@ -73,6 +77,7 @@ export const liveSites: LiveSite[] = [
     url: "https://highlight.io",
     gradient: "from-orange-500 to-red-500",
     tags: ["React", "Go", "Monitoring"],
+    screenshot: "/projects/highlight-inspired-dashboard.png",
   },
 ];
 
@@ -191,6 +196,7 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/gabrielhonorato8357/ai-analytics-platform",
     demoUrl: "#",
     gradient: "from-blue-600 to-violet-600",
+    screenshot: "/projects/ai-analytics-platform.png",
     featured: true,
   },
   {
@@ -281,6 +287,7 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/gabrielhonorato8357/fintech-transaction-dashboard",
     demoUrl: "#",
     gradient: "from-amber-600 to-orange-600",
+    screenshot: "/projects/fintech-transaction-dashboard.png",
     featured: true,
   },
   {
@@ -326,6 +333,7 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/gabrielhonorato8357/saas-platform-boilerplate",
     demoUrl: "#",
     gradient: "from-cyan-600 to-blue-600",
+    screenshot: "/projects/saas-infra-starter-kit.png",
   },
   {
     id: "workflow-automation-engine",

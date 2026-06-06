@@ -20,10 +20,10 @@ export default function ContactSection() {
             Get in Touch
           </p>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
-            Let's Build Something
+            Let&apos;s Build Something
           </h2>
           <p className="mt-4 text-slate-400 max-w-xl mx-auto">
-            I'm always interested in discussing product architecture, system design, and engineering challenges. Whether you have a project in mind or just want to connect.
+            I&apos;m always interested in discussing product architecture, system design, and engineering challenges. Whether you have a project in mind or just want to connect.
           </p>
         </motion.div>
 
