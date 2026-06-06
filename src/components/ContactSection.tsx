@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
+import { socialLinks } from "@/lib/data";
 
 export default function ContactSection() {
   return (
@@ -35,13 +35,13 @@ export default function ContactSection() {
           className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <a
-            href="mailto:gabriel.honorato@example.com"
+            href={socialLinks.email}
             className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-medium text-sm hover:from-blue-500 hover:to-cyan-500 transition-all duration-200 shadow-lg shadow-blue-500/25"
           >
             Send an Email
           </a>
           <a
-            href="https://github.com/gabrielhonorator8357"
+            href={socialLinks.github}
             target="_blank"
             rel="noopener noreferrer"
             className="w-full sm:w-auto px-8 py-3.5 rounded-xl border border-slate-700/50 bg-slate-800/30 text-slate-300 font-medium text-sm hover:bg-slate-800/50 hover:text-white transition-all duration-200 inline-flex items-center justify-center gap-2"
@@ -60,15 +60,15 @@ export default function ContactSection() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="mt-12 flex items-center justify-center gap-6 text-sm text-slate-600"
         >
-          <a href="https://linkedin.com/in/gabrielhonorato" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+          <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
             LinkedIn
           </a>
           <span>&middot;</span>
-          <a href="https://github.com/gabrielhonorator8357" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+          <a href={socialLinks.github} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
             GitHub
           </a>
           <span>&middot;</span>
-          <a href="mailto:gabriel.honorato@example.com" className="hover:text-white transition-colors">
+          <a href={socialLinks.email} className="hover:text-white transition-colors">
             Email
           </a>
         </motion.div>

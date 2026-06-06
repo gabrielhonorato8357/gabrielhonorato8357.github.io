@@ -6,8 +6,8 @@ import Link from "next/link";
 
 const navLinks = [
   { label: "Work", href: "/#work" },
-  { label: "About", href: "/#about" },
   { label: "Projects", href: "/#projects" },
+  { label: "About", href: "/#about" },
   { label: "Contact", href: "/#contact" },
 ];
 
@@ -50,7 +50,7 @@ export default function Navbar() {
               </Link>
             ))}
             <a
-              href="mailto:gabriel.honorato@example.com"
+              href="mailto:gabrielhonorato8357@gmail.com"
               className="text-sm px-5 py-2 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-medium hover:from-blue-500 hover:to-cyan-500 transition-all duration-200 shadow-lg shadow-blue-500/20"
             >
               Get in touch
@@ -94,7 +94,7 @@ export default function Navbar() {
                 </Link>
               ))}
               <a
-                href="mailto:gabriel.honorato@example.com"
+                href="mailto:gabrielhonorato8357@gmail.com"
                 className="block text-center px-5 py-2.5 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-medium text-sm"
               >
                 Get in touch

@@ -36,6 +36,25 @@ export interface ProductCategory {
   projectCount: number;
 }
 
+// Reference websites that inspired the design direction
+export const referenceSites = [
+  { name: "Trigger.dev", url: "https://trigger.dev" },
+  { name: "Novu", url: "https://novu.co" },
+  { name: "GetLago", url: "https://getlago.com" },
+  { name: "Dub", url: "https://dub.co" },
+  { name: "Cal.com", url: "https://cal.com" },
+  { name: "Documenso", url: "https://documenso.com" },
+  { name: "Infisical", url: "https://infisical.com" },
+  { name: "Highlight.io", url: "https://highlight.io" },
+  { name: "Midday.ai", url: "https://midday.ai" },
+];
+
+export const socialLinks = {
+  github: "https://github.com/gabrielhonorato8357",
+  linkedin: "https://linkedin.com/in/gabrielhonorato0985",
+  email: "mailto:gabrielhonorato8357@gmail.com",
+};
+
 export const projects: Project[] = [
   {
     id: "ai-analytics-platform",
