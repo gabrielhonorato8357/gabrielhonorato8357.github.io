@@ -26,6 +26,7 @@ export interface Project {
   githubUrl: string;
   demoUrl: string;
   gradient: string;
+  featured?: boolean;
 }
 
 export interface ProductCategory {
@@ -34,6 +35,14 @@ export interface ProductCategory {
   icon: string;
   gradient: string;
   projectCount: number;
+}
+
+export interface LiveSite {
+  name: string;
+  description: string;
+  url: string;
+  gradient: string;
+  tags: string[];
 }
 
 // Reference websites that inspired the design direction
@@ -54,6 +63,53 @@ export const socialLinks = {
   linkedin: "https://linkedin.com/in/gabrielhonorato0985",
   email: "mailto:gabrielhonorato8357@gmail.com",
 };
+
+// Top 3 featured repos with live demo links
+export const featuredRepos = [
+  {
+    name: "ai-analytics-system",
+    description: "Real-time AI analytics platform with anomaly detection, forecasting, and custom dashboard builder. Processes 50K+ events/second.",
+    url: "https://github.com/gabrielhonorato8357/ai-analytics-platform",
+    gradient: "from-blue-600 to-violet-600",
+  },
+  {
+    name: "fintech-dashboard",
+    description: "High-performance financial transaction dashboard with fraud detection, compliance reporting, and multi-currency support.",
+    url: "https://github.com/gabrielhonorato8357/fintech-transaction-dashboard",
+    gradient: "from-amber-600 to-orange-600",
+  },
+  {
+    name: "saas-boilerplate",
+    description: "Production-ready SaaS starter kit with multi-tenant architecture, subscription billing, team management, and API infrastructure.",
+    url: "https://github.com/gabrielhonorato8357/saas-platform-boilerplate",
+    gradient: "from-cyan-600 to-blue-600",
+  },
+];
+
+// 3 live websites
+export const liveSites: LiveSite[] = [
+  {
+    name: "trigger.dev",
+    description: "Background job framework for Next.js with cron scheduling, retries, and observability.",
+    url: "https://trigger.dev",
+    gradient: "from-blue-500 to-indigo-600",
+    tags: ["Next.js", "TypeScript", "Background Jobs"],
+  },
+  {
+    name: "novu.co",
+    description: "Open-source notification infrastructure for product teams. In-app, email, SMS, push notifications.",
+    url: "https://novu.co",
+    gradient: "from-orange-500 to-red-500",
+    tags: ["React", "Node.js", "Notification Engine"],
+  },
+  {
+    name: "getlago.com",
+    description: "Open-source billing and metering platform for SaaS products. Usage-based pricing, invoices, subscriptions.",
+    url: "https://getlago.com",
+    gradient: "from-emerald-500 to-teal-500",
+    tags: ["Ruby", "PostgreSQL", "Billing API"],
+  },
+];
 
 export const projects: Project[] = [
   {
@@ -99,6 +155,7 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/gabrielhonorator8357/ai-analytics-platform",
     demoUrl: "#",
     gradient: "from-blue-600 to-violet-600",
+    featured: true,
   },
   {
     id: "ai-customer-support-platform",
@@ -143,6 +200,7 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/gabrielhonorator8357/ai-customer-support-platform",
     demoUrl: "#",
     gradient: "from-emerald-600 to-teal-600",
+    featured: true,
   },
   {
     id: "fintech-transaction-dashboard",
@@ -187,6 +245,7 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/gabrielhonorator8357/fintech-transaction-dashboard",
     demoUrl: "#",
     gradient: "from-amber-600 to-orange-600",
+    featured: true,
   },
   {
     id: "saas-platform-boilerplate",
