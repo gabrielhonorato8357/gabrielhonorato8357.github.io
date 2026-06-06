@@ -45,69 +45,105 @@ export interface LiveSite {
   tags: string[];
 }
 
-// Reference websites that inspired the design direction
-export const referenceSites = [
-  { name: "Trigger.dev", url: "https://trigger.dev" },
-  { name: "Novu", url: "https://novu.co" },
-  { name: "GetLago", url: "https://getlago.com" },
-  { name: "Dub", url: "https://dub.co" },
-  { name: "Cal.com", url: "https://cal.com" },
-  { name: "Documenso", url: "https://documenso.com" },
-  { name: "Infisical", url: "https://infisical.com" },
-  { name: "Highlight.io", url: "https://highlight.io" },
-  { name: "Midday.ai", url: "https://midday.ai" },
-];
-
 export const socialLinks = {
   github: "https://github.com/gabrielhonorato8357",
   linkedin: "https://linkedin.com/in/gabrielhonorato0985",
   email: "mailto:gabrielhonorato8357@gmail.com",
 };
 
-// Top 3 featured repos with live demo links
-export const featuredRepos = [
+// Top 3 live sites with images - shown as cards with screenshot placeholders
+export const liveSites: LiveSite[] = [
   {
-    name: "ai-analytics-system",
-    description: "Real-time AI analytics platform with anomaly detection, forecasting, and custom dashboard builder. Processes 50K+ events/second.",
-    url: "https://github.com/gabrielhonorato8357/ai-analytics-platform",
-    gradient: "from-blue-600 to-violet-600",
+    name: "dub.co",
+    description: "Open-source link management infrastructure for modern marketing teams. Short links, QR codes, analytics.",
+    url: "https://dub.co",
+    gradient: "from-blue-500 to-indigo-600",
+    tags: ["Next.js", "TypeScript", "Link Management"],
   },
   {
-    name: "fintech-dashboard",
-    description: "High-performance financial transaction dashboard with fraud detection, compliance reporting, and multi-currency support.",
-    url: "https://github.com/gabrielhonorato8357/fintech-transaction-dashboard",
-    gradient: "from-amber-600 to-orange-600",
+    name: "cal.com",
+    description: "Open-source scheduling infrastructure. Connect your calendars and let people book meetings with you.",
+    url: "https://cal.com",
+    gradient: "from-violet-500 to-purple-600",
+    tags: ["React", "TypeScript", "Scheduling"],
   },
   {
-    name: "saas-boilerplate",
-    description: "Production-ready SaaS starter kit with multi-tenant architecture, subscription billing, team management, and API infrastructure.",
-    url: "https://github.com/gabrielhonorato8357/saas-platform-boilerplate",
-    gradient: "from-cyan-600 to-blue-600",
+    name: "highlight.io",
+    description: "Open-source monitoring platform. Session replay, error monitoring, and logging for web apps.",
+    url: "https://highlight.io",
+    gradient: "from-orange-500 to-red-500",
+    tags: ["React", "Go", "Monitoring"],
   },
 ];
 
-// 3 live websites
-export const liveSites: LiveSite[] = [
+// Additional live sites shown as text-only list under "View More"
+export const moreLiveSites: LiveSite[] = [
   {
     name: "trigger.dev",
     description: "Background job framework for Next.js with cron scheduling, retries, and observability.",
     url: "https://trigger.dev",
     gradient: "from-blue-500 to-indigo-600",
-    tags: ["Next.js", "TypeScript", "Background Jobs"],
+    tags: [],
   },
   {
     name: "novu.co",
-    description: "Open-source notification infrastructure for product teams. In-app, email, SMS, push notifications.",
+    description: "Open-source notification infrastructure for product teams. In-app, email, SMS, push.",
     url: "https://novu.co",
     gradient: "from-orange-500 to-red-500",
-    tags: ["React", "Node.js", "Notification Engine"],
+    tags: [],
   },
   {
     name: "getlago.com",
-    description: "Open-source billing and metering platform for SaaS products. Usage-based pricing, invoices, subscriptions.",
+    description: "Open-source billing and metering platform for SaaS products. Usage-based pricing, invoices.",
     url: "https://getlago.com",
     gradient: "from-emerald-500 to-teal-500",
-    tags: ["Ruby", "PostgreSQL", "Billing API"],
+    tags: [],
+  },
+  {
+    name: "documenso.com",
+    description: "Open-source DocuSign alternative. Sign, manage, and track documents digitally.",
+    url: "https://documenso.com",
+    gradient: "from-green-500 to-emerald-600",
+    tags: [],
+  },
+  {
+    name: "infisical.com",
+    description: "Open-source secrets manager for teams. Centralized environment variables and secrets management.",
+    url: "https://infisical.com",
+    gradient: "from-cyan-500 to-blue-600",
+    tags: [],
+  },
+  {
+    name: "midday.ai",
+    description: "Open-source business management platform for freelancers. Invoicing, time tracking, expenses.",
+    url: "https://midday.ai",
+    gradient: "from-rose-500 to-pink-600",
+    tags: [],
+  },
+];
+
+// Top 3 featured repos with correct names
+export const featuredRepos = [
+  {
+    name: "ai-analytics-platform",
+    description: "Real-time AI analytics platform with anomaly detection, forecasting, and custom dashboard builder. Processes 50K+ events/second.",
+    url: "https://github.com/gabrielhonorato8357/ai-analytics-platform",
+    gradient: "from-blue-600 to-violet-600",
+    lang: "Python",
+  },
+  {
+    name: "saas-infra-start-kit",
+    description: "Production-ready SaaS starter kit with multi-tenant architecture, subscription billing, team management, and API infrastructure.",
+    url: "https://github.com/gabrielhonorato8357/saas-infra-start-kit",
+    gradient: "from-cyan-600 to-blue-600",
+    lang: "Python",
+  },
+  {
+    name: "fintech-transaction-dashboard",
+    description: "High-performance financial transaction dashboard with fraud detection, compliance reporting, and multi-currency support.",
+    url: "https://github.com/gabrielhonorato8357/fintech-transaction-dashboard",
+    gradient: "from-amber-600 to-orange-600",
+    lang: "TypeScript",
   },
 ];
 
@@ -152,7 +188,7 @@ export const projects: Project[] = [
       "Increased dashboard adoption across 85% of target teams within first quarter",
       "Saved $2.3M annually by eliminating legacy reporting tool licenses",
     ],
-    githubUrl: "https://github.com/gabrielhonorator8357/ai-analytics-platform",
+    githubUrl: "https://github.com/gabrielhonorato8357/ai-analytics-platform",
     demoUrl: "#",
     gradient: "from-blue-600 to-violet-600",
     featured: true,
@@ -197,7 +233,7 @@ export const projects: Project[] = [
       "Reduced average resolution time from 12 hours to 4 minutes for automated tickets",
       "Increased agent capacity by 3x, allowing team to handle 2x volume without headcount growth",
     ],
-    githubUrl: "https://github.com/gabrielhonorator8357/ai-customer-support-platform",
+    githubUrl: "https://github.com/gabrielhonorato8357/ai-customer-support-platform",
     demoUrl: "#",
     gradient: "from-emerald-600 to-teal-600",
     featured: true,
@@ -242,7 +278,7 @@ export const projects: Project[] = [
       "Fraud detection rate improved from 72% to 94% while reducing false positives by 60%",
       "Compliance report generation reduced from 2 weeks to 2 hours, saving $500K annually",
     ],
-    githubUrl: "https://github.com/gabrielhonorator8357/fintech-transaction-dashboard",
+    githubUrl: "https://github.com/gabrielhonorato8357/fintech-transaction-dashboard",
     demoUrl: "#",
     gradient: "from-amber-600 to-orange-600",
     featured: true,
@@ -287,7 +323,7 @@ export const projects: Project[] = [
       "Reduced average time-to-launch from 6 months to 6 weeks for new SaaS products",
       "Zero security incidents related to tenant data leakage in 2+ years of production use",
     ],
-    githubUrl: "https://github.com/gabrielhonorator8357/saas-platform-boilerplate",
+    githubUrl: "https://github.com/gabrielhonorato8357/saas-platform-boilerplate",
     demoUrl: "#",
     gradient: "from-cyan-600 to-blue-600",
   },
@@ -331,7 +367,7 @@ export const projects: Project[] = [
       "Connected to 200+ SaaS platforms, processing 10M+ workflow executions per month",
       "Achieved 99.97% execution reliability with automatic retry and failure recovery",
     ],
-    githubUrl: "https://github.com/gabrielhonorator8357/workflow-automation-engine",
+    githubUrl: "https://github.com/gabrielhonorato8357/workflow-automation-engine",
     demoUrl: "#",
     gradient: "from-purple-600 to-pink-600",
   },
@@ -375,7 +411,7 @@ export const projects: Project[] = [
       "Enabled 40+ executives to self-serve analytics, reducing data team ad-hoc requests by 70%",
       "Identified $4.2M in cost optimization opportunities through cross-departmental data correlation",
     ],
-    githubUrl: "https://github.com/gabrielhonorator8357/executive-insights-dashboard",
+    githubUrl: "https://github.com/gabrielhonorato8357/executive-insights-dashboard",
     demoUrl: "#",
     gradient: "from-rose-600 to-pink-600",
   },

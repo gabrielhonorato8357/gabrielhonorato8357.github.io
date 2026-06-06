@@ -1,10 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { projects, liveSites, featuredRepos, socialLinks } from "@/lib/data";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { projects, liveSites, moreLiveSites, featuredRepos, socialLinks } from "@/lib/data";
 import Link from "next/link";
 
 export default function FeaturedProjects() {
+  const [showMore, setShowMore] = useState(false);
   const featuredProjects = projects.filter((p) => p.featured);
 
   return (
@@ -30,7 +32,7 @@ export default function FeaturedProjects() {
           </p>
         </motion.div>
 
-        {/* Live Sites - top row with screenshots */}
+        {/* Live Sites - top 3 with screenshots */}
         <div className="mb-16">
           <motion.h3
             initial={{ opacity: 0 }}
@@ -54,7 +56,6 @@ export default function FeaturedProjects() {
                 className="group block"
               >
                 <div className="rounded-xl overflow-hidden bg-slate-900 border border-slate-800 hover:border-blue-500/30 transition-all duration-300">
-                  {/* Screenshot */}
                   <div className="relative aspect-[16/10] overflow-hidden">
                     <div className={`absolute inset-0 bg-gradient-to-br ${site.gradient} opacity-20`} />
                     <div className="absolute inset-0" style={{
@@ -63,7 +64,7 @@ export default function FeaturedProjects() {
                     }} />
                     <div className="absolute inset-0 flex items-center justify-center">
                       <span className="text-4xl opacity-30 group-hover:scale-110 transition-transform duration-300">
-                        {index === 0 ? "⚡" : index === 1 ? "🔔" : "💰"}
+                        {index === 0 ? "🔗" : index === 1 ? "📅" : "📊"}
                       </span>
                     </div>
                     <div className="absolute bottom-3 left-3 right-3">
@@ -94,6 +95,67 @@ export default function FeaturedProjects() {
               </motion.a>
             ))}
           </div>
+
+          {/* View More / View Less button for additional sites */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="mt-6 text-center"
+          >
+            <button
+              onClick={() => setShowMore(!showMore)}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs text-slate-500 hover:text-white border border-slate-800/50 hover:border-slate-700/50 transition-all duration-200"
+            >
+              {showMore ? "Show less" : `View more (${moreLiveSites.length} more sites)`}
+              <svg
+                className={`w-3.5 h-3.5 transition-transform duration-200 ${showMore ? "rotate-180" : ""}`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          </motion.div>
+
+          {/* Additional sites - text only, no images */}
+          <AnimatePresence>
+            {showMore && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3 }}
+                className="overflow-hidden"
+              >
+                <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                  {moreLiveSites.map((site) => (
+                    <a
+                      key={site.name}
+                      href={site.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 p-3 rounded-lg bg-slate-900/30 border border-slate-800/30 hover:border-slate-700/50 hover:bg-slate-900/50 transition-all duration-200 group"
+                    >
+                      <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${site.gradient} flex items-center justify-center text-white text-xs font-bold shrink-0`}>
+                        {site.name.charAt(0).toUpperCase()}
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <p className="text-sm font-medium text-white group-hover:text-blue-400 transition-colors truncate">
+                          {site.name}
+                        </p>
+                        <p className="text-xs text-slate-500 truncate">{site.description}</p>
+                      </div>
+                      <svg className="w-3.5 h-3.5 text-slate-600 group-hover:text-white shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </a>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
         {/* Top Repos */}
@@ -108,7 +170,8 @@ export default function FeaturedProjects() {
           </motion.h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {featuredRepos.map((repo, index) => {
-              const project = featuredProjects[index];
+              // match repo to project by checking if the slug starts with the repo name
+              const project = featuredProjects.find((p) => p.slug.startsWith(repo.name.split("-")[0]));
               return (
                 <motion.div
                   key={repo.name}
@@ -129,7 +192,7 @@ export default function FeaturedProjects() {
                             {repo.name}
                           </h4>
                           <span className="text-[10px] text-slate-600 font-mono">
-                            {project?.category || "Repository"}
+                            {repo.lang}
                           </span>
                         </div>
                       </div>
